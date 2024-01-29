@@ -12,7 +12,7 @@ This one was designed for students to learn how to use the RestSharp library to 
 - An IDE that supports C# (like Visual Studio or VS Code)
 
 ## Setup
-1. Clone the repository: `git clone <repo-link>`
+1. Clone the repository: `git clone https://github.com/dneprokos/RestSharpPetStore.git`
 2. Open the solution file with your preferred IDE.
 3. Make sure all the required libraries are included.
 
