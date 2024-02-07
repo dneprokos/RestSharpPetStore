@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Tests\User\" />
     <Folder Include="Tests\Store\" />
   </ItemGroup>
 

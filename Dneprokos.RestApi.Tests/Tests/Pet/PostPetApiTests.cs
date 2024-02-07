@@ -1,4 +1,5 @@
 ﻿using Dneprokos.RestApi.Framework.Models.Pet;
+using Dneprokos.RestApi.Framework.Utils;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Newtonsoft.Json;
@@ -37,14 +38,11 @@ namespace Dneprokos.RestApi.Tests.Tests.Pet
             };
 
             // Act
-            RestResponse response = PetApiRequests!.ExecuteApiPostPetRequest(petBody);
+            RestResponse response = PetApi!.PetSection().ExecuteApiPostPetRequest(petBody);
             
             // Assert
-            response.StatusCode
-                .Should()
-                .Be(HttpStatusCode.OK);
-            var responseBody = JsonConvert.DeserializeObject<PetApiModelV2>(response.Content!);
-            responseBody.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            PetApiModelV2 responseBody = response.ConvertToModel<PetApiModelV2>();
 
             using (new AssertionScope())
             {
@@ -83,12 +81,11 @@ namespace Dneprokos.RestApi.Tests.Tests.Pet
             };
 
             // Act
-            RestResponse response = PetApiRequests!.ExecuteApiPostPetRequest(petBody);
+            RestResponse response = PetApi!.PetSection().ExecuteApiPostPetRequest(petBody);
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            var responseBody = JsonConvert.DeserializeObject<PetApiModelV2>(response.Content!);
-            responseBody.Should().NotBeNull();
+            PetApiModelV2 responseBody = response.ConvertToModel<PetApiModelV2>();
             responseBody.Should().BeEquivalentTo(petBody, res => res.Excluding(res => res.Id));
         }
     }
